@@ -32,7 +32,9 @@
   color: #fff;
 }
 
-.active-button{}
+.active-button{
+  color: rgb(46, 46, 187);
+}
 
 /* #root {
   max-width: 1280px;
