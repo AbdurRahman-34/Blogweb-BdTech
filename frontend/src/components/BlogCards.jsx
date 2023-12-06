@@ -3,8 +3,9 @@ import {Link} from 'react-router-dom'
 import {FaUser} from 'react-icons/fa'
 import {FaCalendar} from 'react-icons/fa6'
 
-const BlogCards = ({blogs}) => {
-    const filterBlogs = blogs;
+const BlogCards = ({blogs, currentPage, selectedCatergory, pageSize}) => {
+    const filterBlogs = blogs.filter((blogs) => !selectedCatergory || blogs.category === selectedCatergory)
+    .slice((currentPage -1)*pageSize, currentPage * pageSize)
   return (
     <div className='grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8'>
         {

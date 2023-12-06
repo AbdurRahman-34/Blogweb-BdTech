@@ -3,8 +3,36 @@
 .active{
   @apply text-blue-400
 }
+.pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
+.pagination li{
+  margin: 0px 5px;
+}
+.pagination a{
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #000;
+}
+.pagination a:hover{
+  background: #eee;
+}
+.pagination li.activePagination{
+  background: rgb(84, 84, 199);
+  border-radius: 4px;
+  color: #fff;
+}
 
+.active-button{}
 
 /* #root {
   max-width: 1280px;

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import BlogCards from './BlogCards';
+import Pagination from './Pagination';
+import CategorySelection from './CategorySelection';
 
 const BlogPage = () => {
     const [blogs, setBlogs] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const pageSize = 12 // blogs per page
     const [selectedCatergory, setSelectedCatergory] = useState(null)
+    const [activeCategory, setActiveCategory] = useState(null)
 
     useEffect(() => {
         async function fetchBlogs(){
@@ -24,20 +27,36 @@ const BlogPage = () => {
         fetchBlogs()
     },[currentPage, pageSize, selectedCatergory])
 
-    const handlePageChange = 
+    // page changing button ::
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber)
+    }
+  
+    // const handleCategoryChange 
+    const handleCategoryChange = (category) => {
+        setSelectedCatergory(category)
+        setCurrentPage(1)
+        setActiveCategory(category)
+    }
+
+
     return (
         <div className='container mx-auto'>
             {/* category section */}
-            <div>Page Category</div>
-
-            {/* Blog cards section */}
             <div>
-                <BlogCards blogs={blogs} />
+                <CategorySelection onSelectCategory={handleCategoryChange} selectedCatergory={selectedCatergory} activeCategory={activeCategory}/>
             </div>
 
-            {/* pagination section */}
-            <div>Pagination 1  2  3</div>
-        </div>
+            {/* Blog cards section  */}
+             <div>
+                <BlogCards blogs={blogs} currentPage={currentPage} selectedCatergory={selectedCatergory} pageSize={pageSize}/>
+            </div>
+
+            {/* // pagination section */}
+            <div>
+                <Pagination onPageChange={handlePageChange} blogs={blogs} currentPage={currentPage} pageSize={pageSize}/>
+            </div>
+            </div>
     );
 };
 
